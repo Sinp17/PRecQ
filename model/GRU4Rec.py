@@ -128,14 +128,14 @@ class GRU4Rec(torch.nn.Module):
         seqs_feats = seqs_f[:,0:-1,:]
         # print(seqs_feats.shape)
 
-        seqs_feats = self.item_emb_dropout(seqs_feats) # 这过了dropout？虽然概率是0
-        # 先正则化一下
+        seqs_feats = self.item_emb_dropout(seqs_feats) 
+        
         
         for i in range(len(self.GRU_layers)):
             seqs_feats = self.GRU_layernorms[i](seqs_feats) 
             seqs_feats = self.GRU_layers[i](seqs_feats)
 
-        #2 过完block正则化一下，就算结束了
+        
         logits = self.last_layernorm(seqs_feats)
         #print(logits.shape)
         pos_logits = (logits * pos_feats).sum(dim=-1) #(B,T-1)
@@ -145,7 +145,7 @@ class GRU4Rec(torch.nn.Module):
             negs_feats = self.item_emb.weight.T[negs.ravel()].view(negs.shape[0],negs.shape[1],-1)
             # print(negs_feats.shape)
             neg_logits = (logits * negs_feats).sum(dim=-1)
-            return pos_logits, neg_logits  # 只用二分类的正样本,负样本暂时没用
+            return pos_logits, neg_logits  
         return pos_logits
 
 
