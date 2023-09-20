@@ -7,7 +7,7 @@ Author: Lingfeng Shi, Yuang Liu, Jun Wang, Wei Zhang
 East China Normal University (ECNU)
 
 ## Intro
-Overview of framework PRecQ
+Overview of framework PRecQ.
 ![Frame Image](/image/PRecQ.jpg)
 
 ## Requirements
@@ -17,17 +17,17 @@ Overview of framework PRecQ
 ## Usage
 First you need a pretrained model, code is not provided here. Then you preprocess the eval data in [gen_test_data.py](https://github.com/Sinp17/PRecQ/blob/main/data/gen_test_data.py).
 
-After that you set paths and models in the [config.py](https://github.com/Sinp17/PRecQ/blob/main/train/config.py), and finally run: 
+After you set paths and models in the [config.py](https://github.com/Sinp17/PRecQ/blob/main/train/config.py), finally run: 
 ```
 python main.py
 ```
 ## Datasets and models
 Many sequential models and quantization methods are free to combine with PRecQ. 
 
-For other datasets in our experiments could be find here: [[Foursquare-Tokyo]](https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset)  [[Steam]](https://www.kaggle.com/datasets/tamber/steam-video-games) 
+For other datasets in our experiments, you could find them here: [[Foursquare-Tokyo]](https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset)  [[Steam]](https://www.kaggle.com/datasets/tamber/steam-video-games) 
 
 ## Notes
-Since many hyperparameters are involved in our experiment, here we select some keypoints in choosing them:
+Since many hyperparameters are involved in our experiment, here we talk about some keypoints during training:
 * Training a good teacher model is essential, it determines the upperbound of the student model. 
 * The scope of gumbel softmax trick, and maximum length of generated sequence are important hyperparameters, they both should not be too large.
 * The rhythm of generator and student model training is important, and the generator should be trained much less frequently than the student model.
