@@ -31,6 +31,7 @@ Since many hyperparameters are involved in our experiment, here we talk about so
 * Training a good teacher model is essential, it determines the upperbound of the student model. 
 * The scope of gumbel softmax trick, and maximum length of generated sequence are important hyperparameters, they both should not be too large.
 * The rhythm of generator and student model training is important, and the generator should be trained much less frequently than the student model.
+* For losses, ranking distillation loss works well for Gru and Rnn models, but not very well for attention-based models. Cross-entropy loss and similarity loss works all the time.
 
 
 
